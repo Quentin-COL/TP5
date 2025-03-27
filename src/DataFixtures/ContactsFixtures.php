@@ -12,19 +12,26 @@ class ContactsFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $genres = ["male","femelle"];
         $faker = Factory::create('fr_FR');
-        $contact = new Contact();
-        $contact->setNom($faker->lastName());
-        $contact->setPrenom($faker->firstName($genres[mt_rand(0, 1)]));
-        $contact->setRue($faker->streetAddress());
-        $contact->setCp($faker->postcode());
-        $contact->setVille($faker->city());
-        $contact->setAvatar($faker->imageUrl());
-        $contact->setMail($faker->email());
-        $contact->setSexe($faker->randomElement([0, 1]));
-
-
-        $manager->flush();
+        $genres = ["male","female"];
+        for ($i = 1; $i <= 10; $i++)
+        {
+            $sexe = mt_rand(0, 1);
+            if ($sexe==0)
+                {$type="men";}
+            else
+                {$type="women";}
+            $contact = new Contact();
+            $contact->setNom($faker->lastName());
+            $contact->setPrenom($faker->firstName($genres[$sexe]));
+            $contact->setRue($faker->streetAddress());
+            $contact->setCp($faker->numberBetween(75000, 92000));
+            $contact->setVille($faker->city());
+            $contact->setMail($faker->email());
+            $contact->setSexe($sexe);
+            $contact->setAvatar("https://randomuser.me/api/portraits/" .$type."/" .$i.".jpg");
+            $manager->persist($contact);   
+        }    
+        $manager->flush();     
     }
 }
