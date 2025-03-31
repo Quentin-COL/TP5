@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}fiche categorie{% endblock %}
+
+{% block body %}
+<h1 class="text-center pt-2">Fiche catégorie</h1>
+<div class="row">
+            <div class="card container">
+                <h4 class="card-header">{{ LaCategorie.libelle}}</h4>
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                    <img class = "mx-auto" style = "height = 300px; max-width: 1000px;"  src="{{ LaCategorie.image }}" alt="">
+                    </div>
+                    <p class="list-group-item">{{LaCategorie.description}}</p>    
+                </div>
+            </div>
+            <a href="{{path('categories')}}" class="btn btn-primary btn-block text-center">Retour</a>
+</div>
+
+{% endblock %}
