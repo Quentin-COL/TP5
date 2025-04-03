@@ -7,26 +7,7 @@
 <div class="row">
     {% for LeContact in LesContacts %}
          <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
-            <div class="card mb-3">
-                <h4 class="card-header">{{ LeContact.nom}} {{LeContact.prenom}}</h4>
-                <img class = "avatar mx-auto my-3 " style = "height = auto; max-width: 200px; display : block;"  src="{{ LeContact.avatar }}" alt="">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{LeContact.rue}}</li>
-                    <li class="list-group-item">{{LeContact.cp}}</li>
-                    <li class="list-group-item">{{LeContact.ville}}</li>
-                    <li class="list-group-item">{{LeContact.mail}}</li>
-                    <li class="list-group-item">
-                        {% if LeContact.sexe == 0 %}
-                            <span class="badge badge-info">Homme</span>
-                        {% else %}
-                            <span class="badge badge-info">Femme</span>
-                        {% endif %}
-                    </li>
-                </ul>
-                <div class="card-body">
-                    <a href="{{path('ficheContact', {'id' : LeContact.id})}}" class="btn btn-success btn-block text-center">Détail contact</a>
-                </div>
-            </div>
+            {{ include('contact/_fichecontact.html.twig', {'mode':'ListeContacts'}) }}
         </div> 
     {% endfor %}
 </div>

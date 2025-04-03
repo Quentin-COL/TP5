@@ -5,16 +5,24 @@
 {% block body %}
 <h1 class="text-center pt-2">Fiche catégorie</h1>
 <div class="row">
-            <div class="card container">
-                <h4 class="card-header">{{ LaCategorie.libelle}}</h4>
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                    <img class = "mx-auto" style = "height = 300px; max-width: 1000px;"  src="{{ LaCategorie.image }}" alt="">
-                    </div>
-                    <p class="list-group-item">{{LaCategorie.description}}</p>    
-                </div>
+    <div class="card container">
+        <h4 class="card-header">{{ LaCategorie.libelle}}</h4>
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <img class = "mx-auto" style = "height = 300px; max-width: 1000px;"  src="{{asset(LaCategorie.image)}}" alt="">
             </div>
-            <a href="{{path('categories')}}" class="btn btn-primary btn-block text-center">Retour</a>
+            <p class="list-group-item">{{LaCategorie.description}}</p>    
+        </div>
+    </div>
+    <a href="{{path('categories')}}" class="btn btn-primary btn-block text-center">Retour</a>
+    <hr>
+    <div class="row">
+        {% for LeContact in LaCategorie.contacts %}
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+                {{ include('contact/_fichecontact.html.twig', {'mode':'ficheCategorie'}) }}
+            </div> 
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
