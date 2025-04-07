@@ -15,9 +15,11 @@
                     </div>
                     <p class="list-group-item">{{LaCategorie.description}}</p>
                 </div>
+                <a href="{{path('fichecategorie', {'id' : LaCategorie.id})}}" class="btn btn-primary btn-block text-center">Detail</a>
         </div>
-        <a href="{{path('fichecategorie', {'id' : LaCategorie.id})}}" class="btn btn-primary btn-block text-center">Detail</a>
+        <h5 class="card-header"><span class="badge badge-warning">{{ LaCategorie.contacts|length}} Contacts</span></h5>
     </div>
+
     {% endfor %}
 </div>
 
